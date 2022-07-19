@@ -13,11 +13,28 @@ struct PokemonListScreenView<
 
     @ViewBuilder
     private func content() -> some View {
-        VStack(spacing: 32) {
-            Button("push detail", action: viewModel.openPokemonDetail)
-            Button("modal detail", action: viewModel.openPokemonDetailSheet)
+        LoaderView(
+            requestState: viewModel.request,
+            onNotAsked: { viewModel.loadData() }
+        ) { pokemons in
+            List(Array(pokemons.enumerated()), id: \.offset) { offset, pokemon in
+                Button(action: {
+                    offset % 2 == 0
+                        ? viewModel.openPokemonDetailSheet(for: pokemon)
+                        : viewModel.openPokemonDetail(for: pokemon)
+                }) {
+                    HStack {
+                        Text(verbatim: pokemon.name)
+                    }
+                }
+            }
+            .overlay {
+                if pokemons.isEmpty {
+                    Text("No pokemon available at the moment")
+                }
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .navigationTitle("Pokemons")
     }
 
 }

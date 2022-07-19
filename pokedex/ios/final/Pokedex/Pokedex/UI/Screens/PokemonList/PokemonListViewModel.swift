@@ -2,6 +2,10 @@ import Combine
 import Foundation
 
 protocol PokemonListViewModelProtocol: ObservableObject {
+    typealias ModelType = Pokemon
+
+    var request: RequestState<[ModelType]> { get }
+
     func loadData()
 }
 
@@ -19,19 +23,30 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
     // MARK: - Flow state
     @Published var route: PokemonListRoute?
 
-    func openPokemonDetail() {
-        route = .pokemonDetail
+    func openPokemonDetail(for pokemon: Pokemon) {
+        route = .pokemonDetail(pokemon)
     }
 
-    func openPokemonDetailSheet() {
-        route = .pokemonDetailSheet
+    func openPokemonDetailSheet(for pokemon: Pokemon) {
+        route = .pokemonDetailSheet(pokemon)
     }
 
     // MARK: - ViewModelProtocol
+    @Published private(set) var request: RequestState<[ModelType]> = .notAsked
+
     func loadData() {
         loadingCancellables.cancelAll()
+        request = .loading(last: request.data)
+
         repository.fetchPokemonList()
-            .sinkToResult { _ in }
+            .sinkToResult { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.request = .success(data)
+                case .failure(let error):
+                    self?.request = .failure(error)
+                }
+            }
             .store(in: &loadingCancellables)
     }
 }

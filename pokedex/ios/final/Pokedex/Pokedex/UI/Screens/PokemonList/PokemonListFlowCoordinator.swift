@@ -6,14 +6,14 @@ import SwiftUINavigation
 protocol PokemonListFlowStateProtocol: ObservableObject {
     var route: PokemonListRoute? { get set }
 
-    func openPokemonDetail()
-    func openPokemonDetailSheet()
+    func openPokemonDetail(for pokemon: Pokemon)
+    func openPokemonDetailSheet(for pokemon: Pokemon)
 }
 
 // MARK: - Route
 enum PokemonListRoute {
-    case pokemonDetail
-    case pokemonDetailSheet
+    case pokemonDetail(Pokemon)
+    case pokemonDetailSheet(Pokemon)
 
     var navigationLink: PokemonListRoute? {
         switch self {
@@ -82,12 +82,16 @@ struct PokemonListFlowCoordinator<
 
     // MARK: Destinations
     @ViewBuilder
-    private func pokemonDetailDestination(_ binding: Binding<Void>) -> some View {
-        Color.red
+    private func pokemonDetailDestination(_ binding: Binding<Pokemon>) -> some View {
+        PokemonDetailScreenView(
+            viewModel: PokemonDetailViewModel(pokemon: binding.wrappedValue)
+        )
     }
 
     @ViewBuilder
-    private func pokemonDetailSheetDestination(_ binding: Binding<Void>) -> some View {
-        Color.green
+    private func pokemonDetailSheetDestination(_ binding: Binding<Pokemon>) -> some View {
+        PokemonDetailScreenView(
+            viewModel: PokemonDetailViewModel(pokemon: binding.wrappedValue)
+        )
     }
 }
