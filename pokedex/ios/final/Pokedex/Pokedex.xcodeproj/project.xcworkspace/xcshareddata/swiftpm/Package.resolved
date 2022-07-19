@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "swift-case-paths",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-case-paths",
+      "state" : {
+        "revision" : "a09839348486db8866f85a727b8550be1d671c50",
+        "version" : "0.9.1"
+      }
+    },
+    {
+      "identity" : "swiftui-navigation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swiftui-navigation",
+      "state" : {
+        "revision" : "7191be709528b0d0040105c7071d35fbb923d462",
+        "version" : "0.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}
