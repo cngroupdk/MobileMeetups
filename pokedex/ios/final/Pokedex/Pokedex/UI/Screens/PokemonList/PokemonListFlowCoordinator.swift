@@ -5,16 +5,31 @@ import SwiftUINavigation
 // MARK: - PokemonListFlowStateProtocol
 protocol PokemonListFlowStateProtocol: ObservableObject {
     var route: PokemonListRoute? { get set }
+
+    func openPokemonDetail()
+    func openPokemonDetailSheet()
 }
 
 // MARK: - Route
 enum PokemonListRoute {
     case pokemonDetail
+    case pokemonDetailSheet
 
     var navigationLink: PokemonListRoute? {
         switch self {
         case .pokemonDetail:
             return self
+        default:
+            return nil
+        }
+    }
+
+    var modal: PokemonListRoute? {
+        switch self {
+        case .pokemonDetailSheet:
+            return self
+        default:
+            return nil
         }
     }
 }
@@ -34,6 +49,10 @@ struct PokemonListFlowCoordinator<
         $state.route.map(get: { $0?.navigationLink }, set: { $0 })
     }
 
+    private var activeSheet: Binding<PokemonListRoute?> {
+        $state.route.map(get: { $0?.modal }, set: { $0 })
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -41,6 +60,11 @@ struct PokemonListFlowCoordinator<
                 navigationLinks
             }
         }
+        .sheet(
+            unwrapping: activeSheet,
+            case: /PokemonListRoute.pokemonDetailSheet,
+            content: pokemonDetailSheetDestination
+        )
     }
 
     @ViewBuilder
@@ -60,5 +84,10 @@ struct PokemonListFlowCoordinator<
     @ViewBuilder
     private func pokemonDetailDestination(_ binding: Binding<Void>) -> some View {
         Color.red
+    }
+
+    @ViewBuilder
+    private func pokemonDetailSheetDestination(_ binding: Binding<Void>) -> some View {
+        Color.green
     }
 }

@@ -13,10 +13,9 @@ struct PokemonListScreenView<
 
     @ViewBuilder
     private func content() -> some View {
-        VStack {
-            Button("open detail") {
-                print("xxx")
-            }
+        VStack(spacing: 32) {
+            Button("push detail", action: viewModel.openPokemonDetail)
+            Button("modal detail", action: viewModel.openPokemonDetailSheet)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

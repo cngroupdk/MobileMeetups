@@ -12,6 +12,14 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
 
     // MARK: - Flow state
     @Published var route: PokemonListRoute?
+
+    func openPokemonDetail() {
+        route = .pokemonDetail
+    }
+
+    func openPokemonDetailSheet() {
+        route = .pokemonDetailSheet
+    }
 }
 
 #if DEBUG
