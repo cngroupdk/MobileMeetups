@@ -46,7 +46,23 @@ final class RepositoryService: RepositoryServiceProtocol {
 
     final class MockRepositoryService: RepositoryServiceProtocol {
         func fetchPokemonList() -> Single<[Pokemon], Error> {
-            Empty().asSingle()
+            Just([
+                .init(name: "bulbasaur", url: url("https://pokeapi.co/api/v2/pokemon/1/")),
+                .init(name: "ivysaur", url: url("https://pokeapi.co/api/v2/pokemon/2/")),
+                .init(name: "venusaur", url: url("https://pokeapi.co/api/v2/pokemon/3/")),
+                .init(name: "charmander", url: url("https://pokeapi.co/api/v2/pokemon/4/")),
+                .init(name: "charmeleon", url: url("https://pokeapi.co/api/v2/pokemon/5/")),
+                .init(name: "charizard", url: url("https://pokeapi.co/api/v2/pokemon/6/")),
+            ])
+            .setFailureType(to: Swift.Error.self)
+            .asSingle()
+        }
+    }
+
+    // MARK: Private Helper
+    extension MockRepositoryService {
+        fileprivate func url(_ str: String) -> URL {
+            URL(string: str)!
         }
     }
 #endif
