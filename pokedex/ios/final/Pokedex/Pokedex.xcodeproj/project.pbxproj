@@ -18,6 +18,11 @@
 		FAE5C22828872F8600B2C389 /* Binding+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C22728872F8600B2C389 /* Binding+.swift */; };
 		FAE5C22B2887321600B2C389 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = FAE5C22A2887321600B2C389 /* SwiftUINavigation */; };
 		FAE5C22D288733A700B2C389 /* PokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C22C288733A700B2C389 /* PokemonListViewModel.swift */; };
+		FAE5C23128873B2400B2C389 /* PokemonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = FAE5C23028873B2400B2C389 /* PokemonAPI */; };
+		FAE5C23528873D1C00B2C389 /* Single.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C23428873D1C00B2C389 /* Single.swift */; };
+		FAE5C23728873FA700B2C389 /* AnyCancellable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C23628873FA700B2C389 /* AnyCancellable+.swift */; };
+		FAE5C23928873FBC00B2C389 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C23828873FBC00B2C389 /* Publisher+.swift */; };
+		FAE5C23B2887407100B2C389 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C23A2887407100B2C389 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +37,11 @@
 		FAE5C22328872DEA00B2C389 /* PokemonListFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListFlowCoordinator.swift; sourceTree = "<group>"; };
 		FAE5C22728872F8600B2C389 /* Binding+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+.swift"; sourceTree = "<group>"; };
 		FAE5C22C288733A700B2C389 /* PokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModel.swift; sourceTree = "<group>"; };
+		FAE5C23228873C8100B2C389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		FAE5C23428873D1C00B2C389 /* Single.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Single.swift; sourceTree = "<group>"; };
+		FAE5C23628873FA700B2C389 /* AnyCancellable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnyCancellable+.swift"; sourceTree = "<group>"; };
+		FAE5C23828873FBC00B2C389 /* Publisher+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
+		FAE5C23A2887407100B2C389 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE5C22B2887321600B2C389 /* SwiftUINavigation in Frameworks */,
+				FAE5C23128873B2400B2C389 /* PokemonAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +76,7 @@
 		FAE5C205288727AC00B2C389 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				FAE5C23228873C8100B2C389 /* Info.plist */,
 				FAE5C21A28872AFF00B2C389 /* DependencyInjection */,
 				FAE5C217288729DB00B2C389 /* Service */,
 				FAE5C2142887296E00B2C389 /* UI */,
@@ -103,6 +115,7 @@
 		FAE5C2162887299100B2C389 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FAE5C23A2887407100B2C389 /* Pokemon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +159,7 @@
 		FAE5C22528872F6B00B2C389 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				FAE5C23328873D1500B2C389 /* Combine */,
 				FAE5C22628872F7B00B2C389 /* UI */,
 			);
 			path = Utility;
@@ -157,6 +171,16 @@
 				FAE5C22728872F8600B2C389 /* Binding+.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		FAE5C23328873D1500B2C389 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				FAE5C23428873D1C00B2C389 /* Single.swift */,
+				FAE5C23628873FA700B2C389 /* AnyCancellable+.swift */,
+				FAE5C23828873FBC00B2C389 /* Publisher+.swift */,
+			);
+			path = Combine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +201,7 @@
 			name = Pokedex;
 			packageProductDependencies = (
 				FAE5C22A2887321600B2C389 /* SwiftUINavigation */,
+				FAE5C23028873B2400B2C389 /* PokemonAPI */,
 			);
 			productName = Pokedex;
 			productReference = FAE5C203288727AC00B2C389 /* Pokedex.app */;
@@ -208,6 +233,7 @@
 			mainGroup = FAE5C1FA288727AC00B2C389;
 			packageReferences = (
 				FAE5C2292887321600B2C389 /* XCRemoteSwiftPackageReference "swiftui-navigation" */,
+				FAE5C22F28873B2400B2C389 /* XCRemoteSwiftPackageReference "PokemonAPI" */,
 			);
 			productRefGroup = FAE5C204288727AC00B2C389 /* Products */;
 			projectDirPath = "";
@@ -235,8 +261,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE5C23528873D1C00B2C389 /* Single.swift in Sources */,
 				FAE5C22128872CFC00B2C389 /* PokemonListScreenView.swift in Sources */,
 				FAE5C22D288733A700B2C389 /* PokemonListViewModel.swift in Sources */,
+				FAE5C23928873FBC00B2C389 /* Publisher+.swift in Sources */,
+				FAE5C23728873FA700B2C389 /* AnyCancellable+.swift in Sources */,
+				FAE5C23B2887407100B2C389 /* Pokemon.swift in Sources */,
 				FAE5C21C28872B1000B2C389 /* DIContainer.swift in Sources */,
 				FAE5C21928872A0000B2C389 /* RepositoryService.swift in Sources */,
 				FAE5C207288727AC00B2C389 /* PokedexApp.swift in Sources */,
@@ -374,6 +404,7 @@
 				DEVELOPMENT_TEAM = 478LCHZW7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pokedex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -403,6 +434,7 @@
 				DEVELOPMENT_TEAM = 478LCHZW7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pokedex/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -453,6 +485,14 @@
 				minimumVersion = 0.2.0;
 			};
 		};
+		FAE5C22F28873B2400B2C389 /* XCRemoteSwiftPackageReference "PokemonAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kinkofer/PokemonAPI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -460,6 +500,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FAE5C2292887321600B2C389 /* XCRemoteSwiftPackageReference "swiftui-navigation" */;
 			productName = SwiftUINavigation;
+		};
+		FAE5C23028873B2400B2C389 /* PokemonAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAE5C22F28873B2400B2C389 /* XCRemoteSwiftPackageReference "PokemonAPI" */;
+			productName = PokemonAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

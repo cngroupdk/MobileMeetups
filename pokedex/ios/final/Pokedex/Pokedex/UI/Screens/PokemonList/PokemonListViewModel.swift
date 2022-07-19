@@ -1,13 +1,19 @@
+import Combine
 import Foundation
 
-protocol PokemonListViewModelProtocol: ObservableObject {}
+protocol PokemonListViewModelProtocol: ObservableObject {
+    func loadData()
+}
 
 final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlowStateProtocol {
 
     private let repository: RepositoryServiceProtocol
+    private var loadingCancellables: Set<AnyCancellable> = .init()
 
     init(repository: RepositoryServiceProtocol) {
         self.repository = repository
+
+        loadData()
     }
 
     // MARK: - Flow state
@@ -19,6 +25,14 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
 
     func openPokemonDetailSheet() {
         route = .pokemonDetailSheet
+    }
+
+    // MARK: - ViewModelProtocol
+    func loadData() {
+        loadingCancellables.cancelAll()
+        repository.fetchPokemonList()
+            .sinkToResult { _ in }
+            .store(in: &loadingCancellables)
     }
 }
 
