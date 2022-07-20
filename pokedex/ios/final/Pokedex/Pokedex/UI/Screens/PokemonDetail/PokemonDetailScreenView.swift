@@ -8,10 +8,6 @@ struct PokemonDetailScreenView<
     
     let imageSize: CGFloat = 280
     
-    var detail: Pokemon.Detail {
-        return viewModel.pokemon.detail!
-    }
-    
     var body: some View {
         PokemonDetailFlowCoordinator(state: viewModel, content: content)
     }
@@ -28,15 +24,30 @@ struct PokemonDetailScreenView<
                     
                     Title(id: pokemon.id, name: pokemon.name, type: pokemon.detail?.type)
                     
-                    StatInfo(label: "Base Experience", value: detail.baseExperience)
+                    StatInfo(
+                        label: "Base Experience",
+                        value: viewModel.pokemon.detail?.baseExperience
+                    )
                     
-                    StatInfo(label: "Weight", value: detail.weight)
+                    StatInfo(
+                        label: "Weight",
+                        value: viewModel.pokemon.detail?.weight
+                    )
                     
-                    StatInfo(label: "Height", value: detail.height)
+                    StatInfo(
+                        label: "Height",
+                        value: viewModel.pokemon.detail?.height
+                    )
                     
-                    StatInfo(label: "HP", value: detail.hp)
+                    StatInfo(
+                        label: "HP",
+                        value: viewModel.pokemon.detail?.hp
+                    )
                     
-                    StatInfo(label: "Attack", value: detail.attack)
+                    StatInfo(
+                        label: "Attack",
+                        value: viewModel.pokemon.detail?.attack
+                    )
                 }
                 
                 Spacer()
