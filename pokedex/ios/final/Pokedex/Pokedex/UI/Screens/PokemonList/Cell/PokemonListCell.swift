@@ -3,24 +3,70 @@ import SwiftUI
 struct PokemonListCell: View {
 
     let pokemon: Pokemon
+    let action: () -> Void
+
+    private var cardColor: Color? {
+        guard let type = pokemon.detail?.type,
+            let colorHex = Constant.pokemonTypeColors[type]
+        else { return nil }
+        return Color(hex: colorHex).opacity(0.4)
+    }
 
     var body: some View {
-        HStack(spacing: 24) {
-            pokemon.imageUrl.map {
-                AsyncImage(url: $0) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.clear
+        Button(action: action) {
+            ZStack(alignment: .bottomTrailing) {
+                pokemon.imageUrl.map {
+                    AsyncImage(url: $0) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Color.clear
+                    }
+                    .frame(width: 80, height: 80)
                 }
-                .frame(width: 50, height: 50)
-            }
-            Text(verbatim: pokemon.name)
 
-            if let type = pokemon.detail?.type {
-                Spacer()
-                Text(verbatim: "[\(type)]")
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(verbatim: pokemon.name)
+                        .font(.headline)
+                        .fontWeight(.bold)
+
+                    Group {
+                        Text(verbatim: "\(pokemon.id)")
+                            .font(.caption2)
+
+                        if let type = pokemon.detail?.type {
+                            Text(verbatim: type)
+                                .font(.caption2)
+                        }
+                    }
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 8)
+                    .background(cardColor ?? Color.gray.opacity(0.1))
+                    .clipShape(Capsule())
+
+                    Spacer()
+                }
+                .foregroundColor(Color.primary)
+                .leadingAligned()
+
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(6)
+            .ifLet(
+                cardColor,
+                content: { view, color in
+                    view.background(color.background(.ultraThickMaterial))
+                },
+                else: { $0.background(.ultraThinMaterial) }
+            )
+            .clipShape(
+                RoundedCornersShape(
+                    radius: 12,
+                    corners: [.allCorners]
+                )
+            )
         }
+        .buttonStyle(PlainButtonStyle())
+        .background(.clear)
     }
 
 }
@@ -36,7 +82,8 @@ struct PokemonListCell: View {
                         string:
                             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
                     )
-                )
+                ),
+                action: {}
             )
         }
     }

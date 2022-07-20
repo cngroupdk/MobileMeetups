@@ -7,6 +7,8 @@ protocol PokemonListViewModelProtocol: ObservableObject {
 
     var request: RequestState<[ModelType]> { get }
     var pokemons: [ModelType] { get set }
+    var filteredPokemons: [ModelType] { get }
+    var searchText: String { get set }
 
     func loadData()
 }
@@ -18,8 +20,18 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
 
     init(repository: RepositoryServiceProtocol) {
         self.repository = repository
-
         loadData()
+    }
+
+    private func updateFilteredResult() {
+        let backup = request.data ?? []
+        filteredPokemons =
+            searchText.isEmpty
+            ? backup
+            : backup.filter {
+                $0.name.lowercased().contains(searchText.lowercased())
+                    || String($0.id).contains(searchText)
+            }
     }
 
     // MARK: - Flow state
@@ -34,14 +46,16 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
     }
 
     // MARK: - ViewModelProtocol
-    @Published private(set) var request: RequestState<[ModelType]> = .notAsked
+    @Published var filteredPokemons: [ModelType] = []
+    @Published private(set) var request: RequestState<[ModelType]> = .notAsked {
+        didSet { updateFilteredResult() }
+    }
+    var searchText: String = "" {
+        didSet { updateFilteredResult() }
+    }
     var pokemons: [ModelType] {
-        get {
-            request.data ?? []
-        }
-        set {
-            request = .success(newValue)
-        }
+        get { request.data ?? [] }
+        set { request = .success(newValue) }
     }
 
     func loadData() {
