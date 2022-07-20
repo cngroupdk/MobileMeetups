@@ -52,12 +52,19 @@ final class RepositoryService: RepositoryServiceProtocol {
             .tryMap { object -> Pokemon.Detail in
                 let type = object.types?.first?.type?.name
                 let weight = object.weight
+                let baseExperience = object.baseExperience
                 let height = object.height
-                let species = object.species
-                let abilities = object.abilities
-                let boa = object.stats
+                let hp = object.stats?[0].baseStat
+                let attack = object.stats?[1].baseStat
                 
-                return .init(type: type, weight: weight, height: height, species: species?.name)
+                return .init(
+                    type: type,
+                    baseExperience: baseExperience,
+                    weight: weight,
+                    height: height,
+                    hp: hp,
+                    attack: attack
+                )
             }
             .asSingle()
     }
