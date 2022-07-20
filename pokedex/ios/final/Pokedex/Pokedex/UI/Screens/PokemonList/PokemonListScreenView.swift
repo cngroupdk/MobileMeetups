@@ -22,9 +22,7 @@ struct PokemonListScreenView<
                     if let $pokemon = $viewModel.pokemons.first(where: {
                         $0.wrappedValue == pokemon
                     }) {
-                        pokemon.id % 2 == 0
-                            ? viewModel.openPokemonDetailSheet(for: $pokemon)
-                            : viewModel.openPokemonDetail(for: $pokemon)
+                        viewModel.openPokemonDetailSheet(for: $pokemon)
                     }
                 }) {
                     PokemonListCell(pokemon: pokemon)

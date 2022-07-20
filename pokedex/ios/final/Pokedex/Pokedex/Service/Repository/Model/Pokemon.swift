@@ -32,5 +32,8 @@ struct Pokemon: Identifiable, Hashable {
 extension Pokemon {
     struct Detail: Hashable {
         let type: String?
+        let weight: Int?
+        let height: Int?
+        let species: String?
     }
 }

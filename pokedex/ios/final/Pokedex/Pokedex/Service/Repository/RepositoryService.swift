@@ -51,7 +51,13 @@ final class RepositoryService: RepositoryServiceProtocol {
         pokemonService.fetchPokemon(id)
             .tryMap { object -> Pokemon.Detail in
                 let type = object.types?.first?.type?.name
-                return .init(type: type)
+                let weight = object.weight
+                let height = object.height
+                let species = object.species
+                let abilities = object.abilities
+                let boa = object.stats
+                
+                return .init(type: type, weight: weight, height: height, species: species?.name)
             }
             .asSingle()
     }
