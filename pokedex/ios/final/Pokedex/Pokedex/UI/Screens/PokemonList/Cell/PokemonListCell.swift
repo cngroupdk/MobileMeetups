@@ -15,6 +15,11 @@ struct PokemonListCell: View {
                 .frame(width: 50, height: 50)
             }
             Text(verbatim: pokemon.name)
+
+            if let type = pokemon.detail?.type {
+                Spacer()
+                Text(verbatim: "[\(type)]")
+            }
         }
     }
 

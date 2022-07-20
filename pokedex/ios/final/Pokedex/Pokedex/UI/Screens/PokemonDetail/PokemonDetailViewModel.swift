@@ -1,3 +1,4 @@
+import Combine
 import Foundation
 import SwiftUI
 
@@ -10,6 +11,7 @@ protocol PokemonDetailViewModelProtocol: ObservableObject {
 final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDetailFlowStateProtocol
 {
     private let repository: RepositoryServiceProtocol
+    private var loadingCancellables: Set<AnyCancellable> = .init()
 
     init(
         repository: RepositoryServiceProtocol,
@@ -17,6 +19,22 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
     ) {
         self.repository = repository
         self._pokemon = pokemon
+
+        loadDetailIfNeeded()
+    }
+
+    private func loadDetailIfNeeded() {
+        guard pokemon.detail == nil else { return }
+
+        loadingCancellables.cancelAll()
+        repository.fetchPokemonDetail(for: pokemon.id)
+            .sinkToResult { [weak self] in
+                guard case .success(let detail) = $0,
+                    let pokemon = self?.pokemon
+                else { return }
+                self?.pokemon = pokemon.updated(with: detail)
+            }
+            .store(in: &loadingCancellables)
     }
 
     // MARK: - Flow state
