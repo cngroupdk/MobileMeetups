@@ -12,7 +12,15 @@ struct PokemonDetailScreenView<
 
     @ViewBuilder
     private func content() -> some View {
-        HStack {
+        VStack {
+            viewModel.pokemon.image.map {
+                AsyncImage(url: $0) { image in
+                    image.resizable()
+                } placeholder: {
+                    Color.clear
+                }
+                .frame(width: 150, height: 150)
+            }
             Text(viewModel.pokemon.name)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

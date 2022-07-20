@@ -60,6 +60,7 @@ struct PokemonListFlowCoordinator<
                 navigationLinks
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             unwrapping: activeSheet,
             case: /PokemonListRoute.pokemonDetailSheet,

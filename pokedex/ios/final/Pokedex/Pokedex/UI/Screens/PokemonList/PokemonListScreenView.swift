@@ -23,7 +23,15 @@ struct PokemonListScreenView<
                         ? viewModel.openPokemonDetailSheet(for: pokemon)
                         : viewModel.openPokemonDetail(for: pokemon)
                 }) {
-                    HStack {
+                    HStack(spacing: 24) {
+                        pokemon.image.map {
+                            AsyncImage(url: $0) { image in
+                                image.resizable()
+                            } placeholder: {
+                                Color.clear
+                            }
+                            .frame(width: 50, height: 50)
+                        }
                         Text(verbatim: pokemon.name)
                     }
                 }

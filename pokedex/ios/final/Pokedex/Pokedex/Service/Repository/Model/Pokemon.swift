@@ -1,6 +1,8 @@
 import Foundation
 
-struct Pokemon {
+struct Pokemon: Identifiable {
+    let id: String
     let name: String
-    let url: URL
+    let image: URL?
+    let detail: URL?
 }
