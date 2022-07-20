@@ -17,18 +17,24 @@ struct PokemonListScreenView<
             requestState: viewModel.request,
             onNotAsked: { viewModel.loadData() }
         ) { pokemons in
-            List(pokemons, id: \.self) { pokemon in
-                Button(action: {
-                    if let $pokemon = $viewModel.pokemons.first(where: {
-                        $0.wrappedValue == pokemon
-                    }) {
-                        pokemon.id % 2 == 0
-                            ? viewModel.openPokemonDetailSheet(for: $pokemon)
-                            : viewModel.openPokemonDetail(for: $pokemon)
+            ScrollView(.vertical, showsIndicators: true) {
+                LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
+                    ForEach(pokemons, id: \.self) { pokemon in
+                        PokemonListCell(
+                            pokemon: pokemon,
+                            action: {
+                                if let $pokemon = $viewModel.pokemons.first(where: {
+                                    $0.wrappedValue == pokemon
+                                }) {
+                                    pokemon.id % 2 == 0
+                                        ? viewModel.openPokemonDetailSheet(for: $pokemon)
+                                        : viewModel.openPokemonDetail(for: $pokemon)
+                                }
+                            }
+                        )
                     }
-                }) {
-                    PokemonListCell(pokemon: pokemon)
                 }
+                .padding(.horizontal, 8)
             }
             .overlay {
                 if pokemons.isEmpty {
