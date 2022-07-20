@@ -63,7 +63,7 @@ struct PokemonListFlowCoordinator<
         .sheet(
             unwrapping: activeSheet,
             case: /PokemonListRoute.pokemonDetailSheet,
-            content: pokemonDetailSheetDestination
+            content: pokemonDetailDestination
         )
     }
 
@@ -83,15 +83,13 @@ struct PokemonListFlowCoordinator<
     // MARK: Destinations
     @ViewBuilder
     private func pokemonDetailDestination(_ binding: Binding<Pokemon>) -> some View {
-        PokemonDetailScreenView(
-            viewModel: PokemonDetailViewModel(pokemon: binding.wrappedValue)
-        )
-    }
-
-    @ViewBuilder
-    private func pokemonDetailSheetDestination(_ binding: Binding<Pokemon>) -> some View {
-        PokemonDetailScreenView(
-            viewModel: PokemonDetailViewModel(pokemon: binding.wrappedValue)
-        )
+        IfLet(.constant(container.services[RepositoryServiceProtocol.self])) { $repository in
+            PokemonDetailScreenView(
+                viewModel: PokemonDetailViewModel(
+                    repository: repository,
+                    pokemon: binding.wrappedValue
+                )
+            )
+        }
     }
 }

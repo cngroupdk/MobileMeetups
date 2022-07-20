@@ -8,8 +8,13 @@ protocol PokemonDetailViewModelProtocol: ObservableObject {
 // MARK: - PokemonDetailViewModel
 final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDetailFlowStateProtocol
 {
+    private let repository: RepositoryServiceProtocol
 
-    init(pokemon: Pokemon) {
+    init(
+        repository: RepositoryServiceProtocol,
+        pokemon: Pokemon
+    ) {
+        self.repository = repository
         self.pokemon = pokemon
     }
 
@@ -24,6 +29,7 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
     extension PokemonDetailViewModel {
         static var preview: Self {
             .init(
+                repository: .mock,
                 pokemon:
                     .init(
                         name: "bulbasaur",
