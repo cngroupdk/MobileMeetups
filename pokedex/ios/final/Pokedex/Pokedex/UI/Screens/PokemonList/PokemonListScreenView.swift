@@ -19,7 +19,7 @@ struct PokemonListScreenView<
         ) { pokemons in
             ScrollView(.vertical, showsIndicators: true) {
                 LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
-                    ForEach(pokemons, id: \.self) { pokemon in
+                    ForEach(viewModel.filteredPokemons, id: \.self) { pokemon in
                         PokemonListCell(
                             pokemon: pokemon,
                             action: {
@@ -42,6 +42,7 @@ struct PokemonListScreenView<
                 }
             }
         }
+        .searchable(text: $viewModel.searchText, prompt: "Look for pokemon")
         .navigationTitle("Pokemons")
     }
 
