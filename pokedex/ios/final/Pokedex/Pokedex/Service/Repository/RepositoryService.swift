@@ -5,11 +5,11 @@ import PokemonAPI
 // MARK: - RepositoryServiceProtocol
 protocol RepositoryServiceProtocol: ServiceProtocol {
     func fetchPokemonList() -> Single<[Pokemon], Error>
-    func imageURL(for id: String) -> URL?
+    func imageURL(for id: Int) -> URL?
 }
 
 extension RepositoryServiceProtocol {
-    func imageURL(for id: String) -> URL? {
+    func imageURL(for id: Int) -> URL? {
         URL(
             string:
                 "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png"
@@ -36,9 +36,9 @@ final class RepositoryService: RepositoryServiceProtocol {
                     guard let resource = resource as? PKMNamedAPIResource<PKMPokemon>,
                         let name = resource.name,
                         let urlString = resource.url,
-                        let url = URL(string: urlString)
+                        let url = URL(string: urlString),
+                        let id = Int(url.lastPathComponent)
                     else { return nil }
-                    let id = url.lastPathComponent
                     let imageURL = self?.imageURL(for: id)
                     return .init(id: id, name: name, image: imageURL, detail: url)
                 } ?? []
@@ -59,12 +59,12 @@ final class RepositoryService: RepositoryServiceProtocol {
         func fetchPokemonList() -> Single<[Pokemon], Error> {
             Just(
                 [
-                    pokemon(id: "1", name: "bulbasaur"),
-                    pokemon(id: "2", name: "ivysaur"),
-                    pokemon(id: "3", name: "venusaur"),
-                    pokemon(id: "4", name: "charmander"),
-                    pokemon(id: "5", name: "charmeleon"),
-                    pokemon(id: "6", name: "charizard"),
+                    pokemon(id: 1, name: "bulbasaur"),
+                    pokemon(id: 2, name: "ivysaur"),
+                    pokemon(id: 3, name: "venusaur"),
+                    pokemon(id: 4, name: "charmander"),
+                    pokemon(id: 5, name: "charmeleon"),
+                    pokemon(id: 6, name: "charizard"),
                 ].compactMap { $0 }
             )
             .setFailureType(to: Swift.Error.self)
@@ -74,7 +74,7 @@ final class RepositoryService: RepositoryServiceProtocol {
 
     // MARK: Private Helper
     extension MockRepositoryService {
-        fileprivate func pokemon(id: String, name: String) -> Pokemon? {
+        fileprivate func pokemon(id: Int, name: String) -> Pokemon? {
             .init(
                 id: id,
                 name: name,

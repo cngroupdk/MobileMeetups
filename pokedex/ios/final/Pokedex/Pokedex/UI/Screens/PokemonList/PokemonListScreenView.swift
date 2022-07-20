@@ -17,9 +17,9 @@ struct PokemonListScreenView<
             requestState: viewModel.request,
             onNotAsked: { viewModel.loadData() }
         ) { pokemons in
-            List(Array(pokemons.enumerated()), id: \.offset) { offset, pokemon in
+            List(pokemons, id: \.self) { pokemon in
                 Button(action: {
-                    offset % 2 == 0
+                    pokemon.id % 2 == 0
                         ? viewModel.openPokemonDetailSheet(for: pokemon)
                         : viewModel.openPokemonDetail(for: pokemon)
                 }) {

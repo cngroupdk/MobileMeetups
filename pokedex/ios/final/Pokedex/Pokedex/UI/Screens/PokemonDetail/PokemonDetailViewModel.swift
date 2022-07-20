@@ -32,7 +32,7 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
                 repository: .mock,
                 pokemon:
                     .init(
-                        id: "1",
+                        id: 1,
                         name: "bulbasaur",
                         image: nil,
                         detail: URL(string: "https://pokeapi.co/api/v2/pokemon/1/")
