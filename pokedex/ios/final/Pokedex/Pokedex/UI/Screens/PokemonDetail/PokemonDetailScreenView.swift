@@ -12,18 +12,23 @@ struct PokemonDetailScreenView<
 
     @ViewBuilder
     private func content() -> some View {
-        VStack {
-            viewModel.pokemon.imageUrl.map {
-                AsyncImage(url: $0) { image in
-                    image.resizable()
-                } placeholder: {
-                    Color.clear
+        LoaderView(
+            requestState: viewModel.request,
+            onNotAsked: { viewModel.loadDetailIfNeeded() }
+        ) { pokemon in
+            VStack {
+                pokemon.imageUrl.map {
+                    AsyncImage(url: $0) { image in
+                        image.resizable()
+                    } placeholder: {
+                        Color.clear
+                    }
+                    .frame(width: 150, height: 150)
                 }
-                .frame(width: 150, height: 150)
+                Text(pokemon.name)
             }
-            Text(viewModel.pokemon.name)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

@@ -4,7 +4,10 @@ import SwiftUI
 
 // MARK: - PokemonDetailViewModelProtocol
 protocol PokemonDetailViewModelProtocol: ObservableObject {
+    var request: RequestState<Pokemon> { get }
     var pokemon: Pokemon { get }
+
+    func loadDetailIfNeeded()
 }
 
 // MARK: - PokemonDetailViewModel
@@ -19,22 +22,6 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
     ) {
         self.repository = repository
         self._pokemon = pokemon
-
-        loadDetailIfNeeded()
-    }
-
-    private func loadDetailIfNeeded() {
-        guard pokemon.detail == nil else { return }
-
-        loadingCancellables.cancelAll()
-        repository.fetchPokemonDetail(for: pokemon.id)
-            .sinkToResult { [weak self] in
-                guard case .success(let detail) = $0,
-                    let pokemon = self?.pokemon
-                else { return }
-                self?.pokemon = pokemon.updated(with: detail)
-            }
-            .store(in: &loadingCancellables)
     }
 
     // MARK: - Flow state
@@ -42,6 +29,30 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
 
     // MARK: - ViewModelProtocol
     @Binding var pokemon: Pokemon
+    @Published private(set) var request: RequestState<Pokemon> = .notAsked
+
+    func loadDetailIfNeeded() {
+        guard pokemon.detail == nil else {
+            request = .success(pokemon)
+            return
+        }
+
+        loadingCancellables.cancelAll()
+        request = .loading(last: pokemon)
+        repository.fetchPokemonDetail(for: pokemon.id)
+            .sinkToResult { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let detail):
+                    self.pokemon = self.pokemon.updated(with: detail)
+                    self.request = .success(self.pokemon)
+                case .failure(let error):
+                    self.request = .failure(error)
+                }
+            }
+            .store(in: &loadingCancellables)
+    }
+
 }
 
 #if DEBUG
