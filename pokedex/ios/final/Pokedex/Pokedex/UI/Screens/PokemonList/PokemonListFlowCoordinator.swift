@@ -6,14 +6,14 @@ import SwiftUINavigation
 protocol PokemonListFlowStateProtocol: ObservableObject {
     var route: PokemonListRoute? { get set }
 
-    func openPokemonDetail(for pokemon: Pokemon)
-    func openPokemonDetailSheet(for pokemon: Pokemon)
+    func openPokemonDetail(for pokemon: Binding<Pokemon>)
+    func openPokemonDetailSheet(for pokemon: Binding<Pokemon>)
 }
 
 // MARK: - Route
 enum PokemonListRoute {
-    case pokemonDetail(Pokemon)
-    case pokemonDetailSheet(Pokemon)
+    case pokemonDetail(Binding<Pokemon>)
+    case pokemonDetailSheet(Binding<Pokemon>)
 
     var navigationLink: PokemonListRoute? {
         switch self {
@@ -83,7 +83,7 @@ struct PokemonListFlowCoordinator<
 
     // MARK: Destinations
     @ViewBuilder
-    private func pokemonDetailDestination(_ binding: Binding<Pokemon>) -> some View {
+    private func pokemonDetailDestination(_ binding: Binding<Binding<Pokemon>>) -> some View {
         IfLet(.constant(container.services[RepositoryServiceProtocol.self])) { $repository in
             PokemonDetailScreenView(
                 viewModel: PokemonDetailViewModel(

@@ -19,21 +19,15 @@ struct PokemonListScreenView<
         ) { pokemons in
             List(pokemons, id: \.self) { pokemon in
                 Button(action: {
-                    pokemon.id % 2 == 0
-                        ? viewModel.openPokemonDetailSheet(for: pokemon)
-                        : viewModel.openPokemonDetail(for: pokemon)
-                }) {
-                    HStack(spacing: 24) {
-                        pokemon.image.map {
-                            AsyncImage(url: $0) { image in
-                                image.resizable()
-                            } placeholder: {
-                                Color.clear
-                            }
-                            .frame(width: 50, height: 50)
-                        }
-                        Text(verbatim: pokemon.name)
+                    if let $pokemon = $viewModel.pokemons.first(where: {
+                        $0.wrappedValue == pokemon
+                    }) {
+                        pokemon.id % 2 == 0
+                            ? viewModel.openPokemonDetailSheet(for: $pokemon)
+                            : viewModel.openPokemonDetail(for: $pokemon)
                     }
+                }) {
+                    PokemonListCell(pokemon: pokemon)
                 }
             }
             .overlay {

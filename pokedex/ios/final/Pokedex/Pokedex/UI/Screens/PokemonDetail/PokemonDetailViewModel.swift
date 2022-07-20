@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 // MARK: - PokemonDetailViewModelProtocol
 protocol PokemonDetailViewModelProtocol: ObservableObject {
@@ -12,17 +13,17 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
 
     init(
         repository: RepositoryServiceProtocol,
-        pokemon: Pokemon
+        pokemon: Binding<Pokemon>
     ) {
         self.repository = repository
-        self.pokemon = pokemon
+        self._pokemon = pokemon
     }
 
     // MARK: - Flow state
     @Published var route: PokemonDetailRoute?
 
     // MARK: - ViewModelProtocol
-    let pokemon: Pokemon
+    @Binding var pokemon: Pokemon
 }
 
 #if DEBUG
@@ -30,13 +31,12 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
         static var preview: Self {
             .init(
                 repository: .mock,
-                pokemon:
+                pokemon: .constant(
                     .init(
                         id: 1,
-                        name: "bulbasaur",
-                        image: nil,
-                        detail: URL(string: "https://pokeapi.co/api/v2/pokemon/1/")
+                        name: "bulbasaur"
                     )
+                )
             )
         }
     }

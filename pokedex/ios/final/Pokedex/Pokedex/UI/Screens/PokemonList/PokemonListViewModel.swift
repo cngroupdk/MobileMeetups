@@ -1,10 +1,12 @@
 import Combine
 import Foundation
+import SwiftUI
 
 protocol PokemonListViewModelProtocol: ObservableObject {
     typealias ModelType = Pokemon
 
     var request: RequestState<[ModelType]> { get }
+    var pokemons: [ModelType] { get set }
 
     func loadData()
 }
@@ -23,16 +25,24 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
     // MARK: - Flow state
     @Published var route: PokemonListRoute?
 
-    func openPokemonDetail(for pokemon: Pokemon) {
+    func openPokemonDetail(for pokemon: Binding<Pokemon>) {
         route = .pokemonDetail(pokemon)
     }
 
-    func openPokemonDetailSheet(for pokemon: Pokemon) {
+    func openPokemonDetailSheet(for pokemon: Binding<Pokemon>) {
         route = .pokemonDetailSheet(pokemon)
     }
 
     // MARK: - ViewModelProtocol
     @Published private(set) var request: RequestState<[ModelType]> = .notAsked
+    var pokemons: [ModelType] {
+        get {
+            request.data ?? []
+        }
+        set {
+            request = .success(newValue)
+        }
+    }
 
     func loadData() {
         loadingCancellables.cancelAll()

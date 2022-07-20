@@ -5,6 +5,7 @@ import PokemonAPI
 // MARK: - RepositoryServiceProtocol
 protocol RepositoryServiceProtocol: ServiceProtocol {
     func fetchPokemonList() -> Single<[Pokemon], Error>
+    func fetchPokemonDetail(for id: Int) -> Single<Pokemon.Detail, Error>
     func imageURL(for id: Int) -> URL?
 }
 
@@ -40,8 +41,17 @@ final class RepositoryService: RepositoryServiceProtocol {
                         let id = Int(url.lastPathComponent)
                     else { return nil }
                     let imageURL = self?.imageURL(for: id)
-                    return .init(id: id, name: name, image: imageURL, detail: url)
+                    return .init(id: id, name: name, imageUrl: imageURL)
                 } ?? []
+            }
+            .asSingle()
+    }
+
+    func fetchPokemonDetail(for id: Int) -> Single<Pokemon.Detail, Error> {
+        pokemonService.fetchPokemon(id)
+            .tryMap { object -> Pokemon.Detail in
+                let type = object.types?.first?.type?.name
+                return .init(type: type)
             }
             .asSingle()
     }
@@ -70,6 +80,9 @@ final class RepositoryService: RepositoryServiceProtocol {
             .setFailureType(to: Swift.Error.self)
             .asSingle()
         }
+        func fetchPokemonDetail(for id: Int) -> Single<Pokemon.Detail, Error> {
+            Empty().asSingle()
+        }
     }
 
     // MARK: Private Helper
@@ -78,8 +91,7 @@ final class RepositoryService: RepositoryServiceProtocol {
             .init(
                 id: id,
                 name: name,
-                image: imageURL(for: id),
-                detail: URL(string: "https://pokeapi.co/api/v2/pokemon/\(id)/")
+                imageUrl: imageURL(for: id)
             )
         }
     }

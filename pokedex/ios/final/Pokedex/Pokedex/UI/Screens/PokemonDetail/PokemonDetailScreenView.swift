@@ -13,7 +13,7 @@ struct PokemonDetailScreenView<
     @ViewBuilder
     private func content() -> some View {
         VStack {
-            viewModel.pokemon.image.map {
+            viewModel.pokemon.imageUrl.map {
                 AsyncImage(url: $0) { image in
                     image.resizable()
                 } placeholder: {

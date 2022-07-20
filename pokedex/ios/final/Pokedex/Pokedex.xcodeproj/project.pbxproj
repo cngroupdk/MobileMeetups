@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA15EBA82887F79F009F1F9D /* PokemonListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA15EBA72887F79F009F1F9D /* PokemonListCell.swift */; };
 		FAE5C207288727AC00B2C389 /* PokedexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5C206288727AC00B2C389 /* PokedexApp.swift */; };
 		FAE5C20B288727AD00B2C389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE5C20A288727AD00B2C389 /* Assets.xcassets */; };
 		FAE5C20E288727AD00B2C389 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE5C20D288727AD00B2C389 /* Preview Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA15EBA72887F79F009F1F9D /* PokemonListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListCell.swift; sourceTree = "<group>"; };
 		FAE5C203288727AC00B2C389 /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE5C206288727AC00B2C389 /* PokedexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexApp.swift; sourceTree = "<group>"; };
 		FAE5C20A288727AD00B2C389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA15EBA62887F78A009F1F9D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FA15EBA72887F79F009F1F9D /* PokemonListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		FAE5C1FA288727AC00B2C389 = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +167,7 @@
 		FAE5C21F28872CDA00B2C389 /* PokemonList */ = {
 			isa = PBXGroup;
 			children = (
+				FA15EBA62887F78A009F1F9D /* Cell */,
 				FAE5C22028872CFC00B2C389 /* PokemonListScreenView.swift */,
 				FAE5C22328872DEA00B2C389 /* PokemonListFlowCoordinator.swift */,
 				FAE5C22C288733A700B2C389 /* PokemonListViewModel.swift */,
@@ -307,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAE5C24C2887491C00B2C389 /* PokemonDetailViewModel.swift in Sources */,
+				FA15EBA82887F79F009F1F9D /* PokemonListCell.swift in Sources */,
 				FAE5C23528873D1C00B2C389 /* Single.swift in Sources */,
 				FAE5C241288743AB00B2C389 /* RequestState.swift in Sources */,
 				FAE5C22128872CFC00B2C389 /* PokemonListScreenView.swift in Sources */,
