@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StatInfo: View {
     let label: String
-    let value: String
+    let value: Int?
     
     var body: some View {
         HStack {
@@ -18,7 +18,9 @@ struct StatInfo: View {
             
             Spacer()
             
-            Text(value)
+            if (value != nil) {
+                Text("\(value!)")
+            }
         }
         .padding(.bottom)
         .padding(.horizontal, 30)
@@ -28,7 +30,7 @@ struct StatInfo: View {
 
 struct StatInfo_Previews: PreviewProvider {
     static var previews: some View {
-        StatInfo(label: "HP", value: "55")
+        StatInfo(label: "HP", value: 55)
             .previewLayout(.sizeThatFits)
             .padding()
     }
