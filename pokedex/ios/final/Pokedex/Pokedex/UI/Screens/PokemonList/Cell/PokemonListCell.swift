@@ -85,6 +85,8 @@ struct PokemonListCell: View {
                 ),
                 action: {}
             )
+            .frame(width: 200, height: 120)
+            .previewLayout(.sizeThatFits)
         }
     }
 #endif
