@@ -25,7 +25,7 @@ struct PokemonListCell: View {
                 }
 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(verbatim: pokemon.name)
+                    Text(verbatim: pokemon.name.capitalized)
                         .font(.headline)
                         .fontWeight(.bold)
 

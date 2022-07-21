@@ -40,8 +40,8 @@ struct PokemonListScreenView<
                 }
             }
         }
-        .searchable(text: $viewModel.searchText, prompt: "Look for pokemon")
-        .navigationTitle("Pokemons")
+        .searchable(text: $viewModel.searchText, prompt: "Look for pokémon")
+        .navigationTitle("Pokémon")
     }
     
 }

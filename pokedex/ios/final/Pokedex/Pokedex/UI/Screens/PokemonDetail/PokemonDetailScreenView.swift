@@ -20,7 +20,9 @@ struct PokemonDetailScreenView<
         ) { pokemon in
             GeometryReader { geometry in
                 VStack {
-                    Header(imageUrl: viewModel.pokemon.imageUrl, headerMinHeight: geometry.size.height / 3)
+                    Header(
+                        imageUrl: viewModel.pokemon.imageUrl,
+                        headerMinHeight: geometry.size.height / 3)
                     
                     Title(id: pokemon.id, name: pokemon.name, type: pokemon.detail?.type)
                     
@@ -65,30 +67,3 @@ struct PokemonDetailScreenView_Previews: PreviewProvider {
     }
 }
 #endif
-
-struct Title: View {
-    let id: Int
-    let name: String
-    let type: String?
-    
-    var body: some View {
-        VStack {
-            Text("#\(id) \(name.capitalized)")
-                .font(.title)
-                .bold()
-                .tracking(2)
-                .padding(.top)
-                .opacity(0.7)
-            
-            Text(type ?? "")
-                .font(.caption)
-                .bold()
-                .padding(.horizontal, 10)
-                .padding(.vertical, 5)
-                .background(.red)
-                .foregroundColor(.white)
-                .cornerRadius(5)
-        }
-        .padding(.bottom)
-    }
-}
