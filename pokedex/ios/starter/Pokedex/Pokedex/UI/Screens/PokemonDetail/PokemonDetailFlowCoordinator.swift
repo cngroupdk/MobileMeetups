@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - PokemonDetailFlowStateProtocol
 protocol PokemonDetailFlowStateProtocol: ObservableObject {
-  var route: PokemonDetailRoute? { get set }
+    var route: PokemonDetailRoute? { get set }
 }
 
 // MARK: - Route
@@ -12,15 +12,15 @@ enum PokemonDetailRoute {
 
 // MARK: - PokemonDetailFlowCoordinator
 struct PokemonDetailFlowCoordinator<
-  State: PokemonDetailFlowStateProtocol,
-  Content: View
+    State: PokemonDetailFlowStateProtocol,
+    Content: View
 >: View {
 
-  @ObservedObject var state: State
+    @ObservedObject var state: State
 
-  let content: () -> Content
+    let content: () -> Content
 
-  var body: some View {
-    content()
-  }
+    var body: some View {
+        content()
+    }
 }

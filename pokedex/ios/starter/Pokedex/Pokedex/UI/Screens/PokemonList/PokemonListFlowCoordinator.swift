@@ -10,15 +10,15 @@ enum PokemonListRoute {}
 
 // MARK: - PokemonListFlowCoordinator
 struct PokemonListFlowCoordinator<
-  State: PokemonListFlowStateProtocol,
-  Content: View
+    State: PokemonListFlowStateProtocol,
+    Content: View
 >: View {
-  @ObservedObject var state: State
+    @ObservedObject var state: State
 
-  let content: () -> Content
+    let content: () -> Content
 
-  var body: some View {
-    // TODO: implement content and navigation
-    EmptyView()
-  }
+    var body: some View {
+        // TODO: implement content and navigation
+        EmptyView()
+    }
 }
