@@ -1,18 +1,13 @@
 import SwiftUI
 
 extension View {
+    // TODO: implement some modifiers
   func leadingAligned() -> some View {
-    HStack {
       self
-      Spacer()
-    }
   }
 
   func trailingAligned() -> some View {
-    HStack {
-      Spacer()
       self
-    }
   }
 
   func eraseToAnyView() -> AnyView {

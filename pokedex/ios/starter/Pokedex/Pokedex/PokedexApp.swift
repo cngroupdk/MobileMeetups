@@ -18,12 +18,8 @@ struct PokedexApp: App {
 
   var body: some Scene {
     WindowGroup {
-      if let repository = container.services[RepositoryServiceProtocol.self] {
-        PokemonListScreenView(
-          viewModel: PokemonListViewModel(repository: repository)
-        )
-        .environmentObject(container)
-      }
+        // TODO: add root view
+      EmptyView()
     }
   }
 }
