@@ -4,13 +4,13 @@ import SwiftUI
 struct PokemonListScreenView<
     ViewModel: PokemonListViewModelProtocol & PokemonListFlowStateProtocol
 >: View {
-
+    
     @StateObject var viewModel: ViewModel
-
+    
     var body: some View {
         PokemonListFlowCoordinator(state: viewModel, content: content)
     }
-
+    
     @ViewBuilder
     private func content() -> some View {
         LoaderView(
@@ -26,9 +26,7 @@ struct PokemonListScreenView<
                                 if let $pokemon = $viewModel.pokemons.first(where: {
                                     $0.wrappedValue == pokemon
                                 }) {
-                                    pokemon.id % 2 == 0
-                                        ? viewModel.openPokemonDetailSheet(for: $pokemon)
-                                        : viewModel.openPokemonDetail(for: $pokemon)
+                                    viewModel.openPokemonDetailSheet(for: $pokemon)
                                 }
                             }
                         )
@@ -42,18 +40,18 @@ struct PokemonListScreenView<
                 }
             }
         }
-        .searchable(text: $viewModel.searchText, prompt: "Look for pokemon")
-        .navigationTitle("Pokemons")
+        .searchable(text: $viewModel.searchText, prompt: "Look for pokémon")
+        .navigationTitle("Pokémon")
     }
-
+    
 }
 
 #if DEBUG
-    struct PokemonListScreenView_Previews: PreviewProvider {
-        static var previews: some View {
-            PokemonListScreenView<PokemonListViewModel>(
-                viewModel: .preview
-            )
-        }
+struct PokemonListScreenView_Previews: PreviewProvider {
+    static var previews: some View {
+        PokemonListScreenView<PokemonListViewModel>(
+            viewModel: .preview
+        )
     }
+}
 #endif

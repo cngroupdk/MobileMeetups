@@ -13,9 +13,10 @@ protocol PokemonDetailViewModelProtocol: ObservableObject {
 // MARK: - PokemonDetailViewModel
 final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDetailFlowStateProtocol
 {
+    
     private let repository: RepositoryServiceProtocol
     private var loadingCancellables: Set<AnyCancellable> = .init()
-
+    
     init(
         repository: RepositoryServiceProtocol,
         pokemon: Binding<Pokemon>
@@ -56,17 +57,17 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
 }
 
 #if DEBUG
-    extension PokemonDetailViewModel {
-        static var preview: Self {
-            .init(
-                repository: .mock,
-                pokemon: .constant(
-                    .init(
-                        id: 1,
-                        name: "bulbasaur"
-                    )
+extension PokemonDetailViewModel {
+    static var preview: Self {
+        .init(
+            repository: .mock,
+            pokemon: .constant(
+                .init(
+                    id: 1,
+                    name: "bulbasaur"
                 )
             )
-        }
+        )
     }
+}
 #endif
