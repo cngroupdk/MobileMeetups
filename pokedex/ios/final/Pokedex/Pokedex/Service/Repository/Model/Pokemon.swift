@@ -1,5 +1,4 @@
 import Foundation
-import PokemonAPI
 
 struct Pokemon: Identifiable, Hashable {
     let id: Int
@@ -31,7 +30,7 @@ struct Pokemon: Identifiable, Hashable {
 
 // MARK: - Detail
 extension Pokemon {
-    struct Detail: Hashable, Equatable {
+    struct Detail: Hashable {
         let type: String?
         let baseExperience: Int?
         let weight: Int?

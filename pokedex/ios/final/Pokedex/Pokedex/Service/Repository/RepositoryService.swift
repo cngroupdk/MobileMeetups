@@ -56,7 +56,7 @@ final class RepositoryService: RepositoryServiceProtocol {
                 let height = object.height
                 let hp = object.stats?[0].baseStat
                 let attack = object.stats?[1].baseStat
-                
+
                 return .init(
                     type: type,
                     baseExperience: baseExperience,

@@ -7,29 +7,16 @@ protocol PokemonListFlowStateProtocol: ObservableObject {
     var route: PokemonListRoute? { get set }
 
     func openPokemonDetail(for pokemon: Binding<Pokemon>)
-    func openPokemonDetailSheet(for pokemon: Binding<Pokemon>)
 }
 
 // MARK: - Route
 enum PokemonListRoute {
     case pokemonDetail(Binding<Pokemon>)
-    case pokemonDetailSheet(Binding<Pokemon>)
-
-    var navigationLink: PokemonListRoute? {
-        switch self {
-        case .pokemonDetail:
-            return self
-        default:
-            return nil
-        }
-    }
 
     var modal: PokemonListRoute? {
         switch self {
-        case .pokemonDetailSheet:
+        case .pokemonDetail:
             return self
-        default:
-            return nil
         }
     }
 }
@@ -39,15 +26,10 @@ struct PokemonListFlowCoordinator<
     State: PokemonListFlowStateProtocol,
     Content: View
 >: View {
-
     @EnvironmentObject var container: DIContainer
     @ObservedObject var state: State
 
     let content: () -> Content
-
-    private var activeLink: Binding<PokemonListRoute?> {
-        $state.route.map(get: { $0?.navigationLink }, set: { $0 })
-    }
 
     private var activeSheet: Binding<PokemonListRoute?> {
         $state.route.map(get: { $0?.modal }, set: { $0 })
@@ -55,30 +37,14 @@ struct PokemonListFlowCoordinator<
 
     var body: some View {
         NavigationView {
-            ZStack {
-                content()
-                navigationLinks
-            }
+            content()
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(
             unwrapping: activeSheet,
-            case: /PokemonListRoute.pokemonDetailSheet,
+            case: /PokemonListRoute.pokemonDetail,
             content: pokemonDetailDestination
         )
-    }
-
-    @ViewBuilder
-    private var navigationLinks: some View {
-        ZStack {
-            NavigationLink(
-                unwrapping: activeLink,
-                case: /PokemonListRoute.pokemonDetail,
-                destination: pokemonDetailDestination,
-                onNavigate: { _ in },
-                label: { EmptyView() }
-            )
-        }
     }
 
     // MARK: Destinations

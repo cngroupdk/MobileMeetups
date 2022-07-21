@@ -4,8 +4,7 @@ import SwiftUI
 
 // MARK: - PokemonDetailViewModelProtocol
 protocol PokemonDetailViewModelProtocol: ObservableObject {
-    var request: RequestState<Pokemon> { get }
-    var pokemon: Pokemon { get }
+    var pokemonRequest: RequestState<Pokemon> { get }
 
     func loadDetailIfNeeded()
 }
@@ -13,10 +12,11 @@ protocol PokemonDetailViewModelProtocol: ObservableObject {
 // MARK: - PokemonDetailViewModel
 final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDetailFlowStateProtocol
 {
-    
     private let repository: RepositoryServiceProtocol
     private var loadingCancellables: Set<AnyCancellable> = .init()
-    
+
+    @Binding private var pokemon: Pokemon
+
     init(
         repository: RepositoryServiceProtocol,
         pokemon: Binding<Pokemon>
@@ -29,26 +29,25 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
     @Published var route: PokemonDetailRoute?
 
     // MARK: - ViewModelProtocol
-    @Binding var pokemon: Pokemon
-    @Published private(set) var request: RequestState<Pokemon> = .notAsked
+    @Published private(set) var pokemonRequest: RequestState<Pokemon> = .notAsked
 
     func loadDetailIfNeeded() {
         guard pokemon.detail == nil else {
-            request = .success(pokemon)
+            pokemonRequest = .success(pokemon)
             return
         }
 
         loadingCancellables.cancelAll()
-        request = .loading(last: pokemon)
+        pokemonRequest = .loading(last: pokemon)
         repository.fetchPokemonDetail(for: pokemon.id)
             .sinkToResult { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let detail):
                     self.pokemon = self.pokemon.updated(with: detail)
-                    self.request = .success(self.pokemon)
+                    self.pokemonRequest = .success(self.pokemon)
                 case .failure(let error):
-                    self.request = .failure(error)
+                    self.pokemonRequest = .failure(error)
                 }
             }
             .store(in: &loadingCancellables)
@@ -57,17 +56,17 @@ final class PokemonDetailViewModel: PokemonDetailViewModelProtocol & PokemonDeta
 }
 
 #if DEBUG
-extension PokemonDetailViewModel {
-    static var preview: Self {
-        .init(
-            repository: .mock,
-            pokemon: .constant(
-                .init(
-                    id: 1,
-                    name: "bulbasaur"
+    extension PokemonDetailViewModel {
+        static var preview: Self {
+            .init(
+                repository: .mock,
+                pokemon: .constant(
+                    .init(
+                        id: 1,
+                        name: "bulbasaur"
+                    )
                 )
             )
-        )
+        }
     }
-}
 #endif

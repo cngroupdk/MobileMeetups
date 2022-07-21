@@ -118,7 +118,6 @@ extension ErrorView.Variant {
     }
 }
 
-// MARK: Preview
 #if DEBUG
     struct ErrorView_Previews: PreviewProvider {
         static var previews: some View {

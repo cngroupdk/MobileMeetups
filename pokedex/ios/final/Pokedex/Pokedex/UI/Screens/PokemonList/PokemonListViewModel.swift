@@ -14,7 +14,6 @@ protocol PokemonListViewModelProtocol: ObservableObject {
 }
 
 final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlowStateProtocol {
-
     private let repository: RepositoryServiceProtocol
     private var loadingCancellables: Set<AnyCancellable> = .init()
 
@@ -39,10 +38,6 @@ final class PokemonListViewModel: PokemonListViewModelProtocol & PokemonListFlow
 
     func openPokemonDetail(for pokemon: Binding<Pokemon>) {
         route = .pokemonDetail(pokemon)
-    }
-
-    func openPokemonDetailSheet(for pokemon: Binding<Pokemon>) {
-        route = .pokemonDetailSheet(pokemon)
     }
 
     // MARK: - ViewModelProtocol
