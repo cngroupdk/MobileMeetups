@@ -1,10 +1,9 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlinter)
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.nativeCoroutines)
+    alias(libs.plugins.mokoResource.multiplatform)
 }
 
 kotlin {
@@ -16,31 +15,32 @@ kotlin {
         }
     }
 
+    val xcf = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "SharedKit"
+            baseName = "SharedResources"
+            xcf.add(this)
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutine.core)
-                implementation(libs.kotlinx.serialization.core)
-                implementation(libs.kotlinx.serialization.json)
-                implementation(libs.kotlinx.collections.immutable)
-                implementation(libs.koin.core)
-                implementation(libs.bundles.ktor)
+                api(libs.moko.resource.core)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
             }
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.androidx.lifecycle.viewModelKTX)
-                implementation(libs.ktor.android)
+                api(libs.moko.resource.compose)
             }
         }
         val iosX64Main by getting
@@ -48,21 +48,25 @@ kotlin {
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependsOn(commonMain)
-
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-
-            dependencies {
-                implementation(libs.ktor.ios)
-            }
         }
     }
 }
 
+multiplatformResources {
+    multiplatformResourcesPackage = "dk.cngroup.pokedex.sharedresources" // required
+//    multiplatformResourcesClassName = "SharedResources" // optional, default MR
+//    multiplatformResourcesVisibility = MRVisibility.Internal // optional, default Public
+//    iosBaseLocalizationRegion = "en" // optional, default "en"
+//    multiplatformResourcesSourceSet = "commonClientMain"  // optional, default "commonMain"
+}
+
 android {
-    namespace = "dk.cngroup.pokedex.shared"
+    namespace = "dk.cngroup.pokedex.sharedresources"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
+    sourceSets.getByName("main").res.srcDir(File(buildDir, "generated/moko/androidMain/res"))
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()

@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(project(":shared-resources"))
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.bundles.compose)

@@ -13,6 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "My_Application"
+rootProject.name = "Pokedex"
 include(":androidApp")
 include(":shared")
+include(":shared-resources")
