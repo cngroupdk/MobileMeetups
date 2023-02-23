@@ -1,6 +1,8 @@
 package dk.cngroup.pokedex.shared.platform
 
 import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonListViewModel
+import dk.cngroup.pokedex.shared.service.PokedexRepository
+import dk.cngroup.pokedex.shared.service.PokedexRepositoryImpl
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
@@ -12,7 +14,12 @@ private object Modules {
         factory { PlatformInfo() }
     }
 
-    val services = module {}
+    val services = module {
+        single {
+            val pokedexRepository: PokedexRepository = PokedexRepositoryImpl(defaultDispatcher = ioDispatcher)
+            pokedexRepository
+        }
+    }
     val viewModels = module {
         factoryOf(::PokemonListViewModel)
     }

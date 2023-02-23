@@ -11,6 +11,7 @@ coroutines = "1.6.4"
 jvmTarget = "1.8"
 gradlePlugins-agp = "7.4.1"
 gradlePlugins-kotlinter = "3.12.0"
+glide = "1.6.1"
 koin = "3.2.2"
 koin-compose = "3.3.0"
 kotlin = "1.7.20"
@@ -53,6 +54,7 @@ moko-resource-compose = { module = "dev.icerock.moko:resources-compose", version
 moko-resource-core = { module = "dev.icerock.moko:resources", version.ref = "mokoResource" }
 moko-resource-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "mokoResource" }
 google-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "google-accompanist" }
+landscapist-glide = { module = "com.github.skydoves:landscapist-glide", version.ref = "glide" }
 
 [bundles]
 compose = [

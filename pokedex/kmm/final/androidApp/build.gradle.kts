@@ -48,4 +48,5 @@ dependencies {
     implementation(libs.google.accompanist.navigation)
     implementation(libs.bundles.koinAndroid)
     implementation(libs.androidx.lifecycle.runtimeKTX)
+    implementation(libs.landscapist.glide)
 }
