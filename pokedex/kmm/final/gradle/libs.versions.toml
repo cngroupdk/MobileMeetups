@@ -1,0 +1,87 @@
+[versions]
+activityCompose = "1.6.1"
+android-compileSdk = "33"
+android-minSdk = "26"
+android-targetSdk = "33"
+collections-immutable = "0.3.5"
+compose = "1.3.1"
+composeCompiler = "1.3.2"
+composeMaterial3 = "1.0.1"
+coroutines = "1.6.4"
+gradlePlugins-agp = "7.4.1"
+gradlePlugins-kotlinter = "3.12.0"
+koin = "3.2.2"
+koin-compose = "3.3.0"
+kotlin = "1.7.20"
+ktor = "2.1.3"
+lifecycle = "2.5.1"
+mokoResource = "0.20.1"
+nativeCoroutines = "0.13.2"
+navCompose = "2.5.3"
+serialization = "1.4.1"
+google-accompanist = "0.27.1"
+
+[libraries]
+androidx-activity-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+androidx-compose-material3 = { module = "androidx.compose.material3:material3", version.ref = "composeMaterial3" }
+androidx-compose-materialIconsExtended = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+androidx-compose-ui-uiTooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+androidx-compose-ui-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+androidx-lifecycle-runtimeCompose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+androidx-lifecycle-runtimeKTX = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewModelKTX = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-navigation-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navCompose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+kotlinx-coroutine-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutine-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "serialization" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "collections-immutable" }
+ktor-android = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-ios = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
+ktor-serialization = { module = "io.ktor:ktor-client-serialization", version.ref = "ktor" }
+ktor-serializationKotlinxJson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+moko-resource-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "mokoResource" }
+moko-resource-core = { module = "dev.icerock.moko:resources", version.ref = "mokoResource" }
+moko-resource-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "mokoResource" }
+google-accompanist-navigation = { module = "com.google.accompanist:accompanist-navigation-animation", version.ref = "google-accompanist" }
+
+[bundles]
+compose = [
+    "androidx-activity-activityCompose",
+    "androidx-compose-foundation",
+    "androidx-compose-material3",
+    "androidx-compose-materialIconsExtended",
+    "androidx-compose-ui",
+    "androidx-compose-ui-uiTooling",
+    "androidx-compose-ui-uiToolingPreview",
+    "androidx-navigation-navigationCompose"
+]
+koinAndroid = [
+    "koin-android",
+    "koin-compose",
+]
+ktor = [
+    "ktor-contentNegotiation",
+    "ktor-core",
+    "ktor-serialization",
+    "ktor-serializationKotlinxJson",
+]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+android-library = { id = "com.android.library", version.ref = "gradlePlugins-agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinter = { id = "org.jmailen.kotlinter", version.ref = "gradlePlugins-kotlinter" }
+mokoResource-multiplatform = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "mokoResource" }
+nativeCoroutines = { id = "com.rickclephas.kmp.nativecoroutines", version.ref = "nativeCoroutines" }
