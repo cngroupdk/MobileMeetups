@@ -1,0 +1,33 @@
+package dk.cngroup.pokedex.shared.platform
+
+import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonListViewModel
+import org.koin.core.KoinApplication
+import org.koin.core.context.startKoin
+import org.koin.core.module.Module
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.module
+
+private object Modules {
+    val core = module {
+        factory { PlatformInfo() }
+    }
+
+    val services = module {}
+    val viewModels = module {
+        factoryOf(::PokemonListViewModel)
+    }
+}
+
+public fun initKoin(
+    appModule: Module = module {},
+    coreModule: Module = Modules.core,
+    servicesModule: Module = Modules.services,
+    viewModelsModule: Module = Modules.viewModels
+): KoinApplication = startKoin {
+    modules(
+        appModule,
+        coreModule,
+        servicesModule,
+        viewModelsModule
+    )
+}
