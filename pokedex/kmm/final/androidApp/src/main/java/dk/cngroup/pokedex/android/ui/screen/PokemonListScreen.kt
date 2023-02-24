@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import com.skydoves.landscapist.glide.GlideImage
 import dk.cngroup.pokedex.shared.data.model.Pokemon
 import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonListViewModel
+import dk.cngroup.pokedex.sharedresources.MR
+import dk.cngroup.pokedex.sharedresources.localized
 import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,7 +40,7 @@ fun PokemonListScreen(
         modifier = Modifier.padding(horizontal = 12.dp)
     ) {
         Text(
-            text = "Pokémon",
+            text = MR.strings.pokemonList_pokedex.localized(),
             fontSize = 48.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -50,7 +52,7 @@ fun PokemonListScreen(
                 viewModel.updateSearchBarText(it)
             },
             placeholder = {
-                Text(text = "Look for pokémon...")
+                Text(text = MR.strings.pokemonList_lookForPokemon.localized())
             }
         )
 

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="pokedex">Pokédex</string>
+
+    <!-- Pokemon List -->
+    <string name="pokemonList.pokedex">Pokédex</string>
+    <string name="pokemonList.lookForPokemon">Look for pokémon...</string>
+
 </resources>

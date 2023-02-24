@@ -1,4 +1,4 @@
-package dk.cngroup.sharedresources
+package dk.cngroup.pokedex.sharedresources
 
 import android.content.Context
 import dev.icerock.moko.graphics.Color

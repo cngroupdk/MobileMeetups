@@ -16,6 +16,7 @@
 		FACDAC9729A8CC650031E0A7 /* KMPNativeCoroutinesCore in Frameworks */ = {isa = PBXBuildFile; productRef = FACDAC9629A8CC650031E0A7 /* KMPNativeCoroutinesCore */; };
 		FACDAC9A29A8CCA50031E0A7 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = FACDAC9929A8CCA50031E0A7 /* SwiftUINavigation */; };
 		FACDAC9C29A8CCA50031E0A7 /* _SwiftUINavigationState in Frameworks */ = {isa = PBXBuildFile; productRef = FACDAC9B29A8CCA50031E0A7 /* _SwiftUINavigationState */; };
+		FACDAC9F29A8D0D80031E0A7 /* PokemonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */; };
 		FAF958CF29A8043000E46396 /* RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958CE29A8043000E46396 /* RequestState.swift */; };
 		FAF958D629A8048800E46396 /* AnyCancellable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D329A8048700E46396 /* AnyCancellable+.swift */; };
 		FAF958D729A8048800E46396 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D429A8048700E46396 /* Publisher+.swift */; };
@@ -66,6 +67,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FACDAC8F29A8CBA50031E0A7 /* PokemonListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListScreenView.swift; sourceTree = "<group>"; };
 		FACDAC9129A8CBE60031E0A7 /* PokemonListViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModelWrapper.swift; sourceTree = "<group>"; };
+		FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonItem.swift; sourceTree = "<group>"; };
 		FAF958CE29A8043000E46396 /* RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestState.swift; sourceTree = "<group>"; };
 		FAF958D329A8048700E46396 /* AnyCancellable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCancellable+.swift"; sourceTree = "<group>"; };
 		FAF958D429A8048700E46396 /* Publisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 			path = pokemonList;
 			sourceTree = "<group>";
 		};
+		FACDAC9D29A8D0C50031E0A7 /* template */ = {
+			isa = PBXGroup;
+			children = (
+				FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */,
+			);
+			path = template;
+			sourceTree = "<group>";
+		};
 		FAF958CD29A8041F00E46396 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				FAF958FD29A80C9B00E46396 /* atom */,
+				FACDAC9D29A8D0C50031E0A7 /* template */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 				FAF958E729A8049F00E46396 /* HideNavigationBar.swift in Sources */,
 				FAF9590829A80CB300E46396 /* ClearButton.swift in Sources */,
 				FAF958E629A8049F00E46396 /* View+.swift in Sources */,
+				FACDAC9F29A8D0D80031E0A7 /* PokemonItem.swift in Sources */,
 				FAF958E829A8049F00E46396 /* View+placeholder.swift in Sources */,
 				FAF9590929A80CB300E46396 /* RoundedCornersShape.swift in Sources */,
 				FAF958F529A8059200E46396 /* ResourcesColorResource+.swift in Sources */,

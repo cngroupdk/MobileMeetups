@@ -1,4 +1,4 @@
-package dk.cngroup.sharedresources
+package dk.cngroup.pokedex.sharedresources
 
 import dev.icerock.moko.graphics.Color
 import dev.icerock.moko.resources.ColorResource

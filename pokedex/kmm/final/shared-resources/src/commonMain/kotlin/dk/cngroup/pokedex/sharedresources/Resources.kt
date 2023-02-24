@@ -1,4 +1,4 @@
-package dk.cngroup.sharedresources
+package dk.cngroup.pokedex.sharedresources
 
 import dev.icerock.moko.graphics.Color
 import dev.icerock.moko.resources.ColorResource
@@ -16,6 +16,8 @@ expect object Resources {
 }
 
 fun StringResource.localized(): String = Resources.getString(this)
-fun StringResource.localized(args: List<Any>) = Resources.getFormattedString(resId = this, args = args)
-fun PluralsResource.localized(quantity: Int) = Resources.getFormattedPlural(resId = this, quantity = quantity)
+fun StringResource.localized(args: List<Any>) =
+    Resources.getFormattedString(resId = this, args = args)
+fun PluralsResource.localized(quantity: Int) =
+    Resources.getFormattedPlural(resId = this, quantity = quantity)
 fun ColorResource.toColor(): Color = Resources.getColor(resId = this)
