@@ -7,7 +7,7 @@ struct PokemonListScreenView: View {
 
     var body: some View {
         NavigationBarWrapper(barTitleView: {
-            TextView(verbatim: MR.strings().pokemonList_pokedex.localized(), .largeTitle)
+            TextView(verbatim: MR.strings().pokemonList_pokedex.localized(), .largeSubtitle)
                 .padding(.horizontal, Theme.space.s3)
                 .leadingAligned()
                 .eraseToAnyView()

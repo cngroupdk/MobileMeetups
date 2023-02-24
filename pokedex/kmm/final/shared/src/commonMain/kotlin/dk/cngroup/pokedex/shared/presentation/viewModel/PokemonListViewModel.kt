@@ -8,6 +8,7 @@ import dk.cngroup.pokedex.shared.service.PokedexRepository
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,23 +25,33 @@ class PokemonListViewModel(
     private val _pokemonListFlow = MutableStateFlow<ImmutableList<Pokemon>>(persistentListOf())
     val pokemonListFlow: StateFlow<ImmutableList<Pokemon>> = _pokemonListFlow.asStateFlow()
 
-    // Flow for searchbar
-    private val _searchBarFlow = MutableStateFlow("")
-    val searchBarFlow: StateFlow<String> = _searchBarFlow
+    // Flow for search query
+    private val _searchQueryFlow = MutableStateFlow("")
+    val searchQueryFlow: StateFlow<String> = _searchQueryFlow
+
+    private var searchingJob: Job? = null
 
     init {
-        // Fetch data when the ViewModel was initialized
         scope.launch(ioDispatcher) {
             originalPokemonList = repository.getPokemonAll()
             _pokemonListFlow.value = originalPokemonList.toImmutableList()
         }
     }
 
-    fun updateSearchBarText(newText: String) {
-        val normalizedTerm = newText.trim().unaccent()
-        _searchBarFlow.value = newText
-        _pokemonListFlow.value = originalPokemonList.filter {
-            it.name.unaccent().contains(normalizedTerm, true)
-        }.toImmutableList()
+    fun searchPokemon(term: String) {
+        _searchQueryFlow.value = term
+
+        searchingJob?.cancel()
+        searchingJob = scope.launch(ioDispatcher) {
+            val normalizedTerm = term.trim().unaccent()
+            val newPokemonList = if (normalizedTerm.isEmpty()) {
+                originalPokemonList
+            } else {
+                originalPokemonList.filter {
+                    it.name.unaccent().contains(normalizedTerm, true)
+                }
+            }
+            _pokemonListFlow.value = newPokemonList.toImmutableList()
+        }
     }
 }
