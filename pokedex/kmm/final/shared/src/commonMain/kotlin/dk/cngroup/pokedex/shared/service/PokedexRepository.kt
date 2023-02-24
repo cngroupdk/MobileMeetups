@@ -47,12 +47,19 @@ internal class PokedexRepositoryImpl(
 
 //region MockPokedexRepository
 class MockPokedexRepository : PokedexRepository {
-    override suspend fun getPokemonAll(): List<Pokemon> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getPokemonAll(): List<Pokemon> = listOf(
+        Pokemon(id = 1, name = "Bulbasaur", imageUrl = getPokemonImageUrlById(1)),
+        Pokemon(id = 2, name = "Ivysaur", imageUrl = getPokemonImageUrlById(2)),
+        Pokemon(id = 3, name = "Venusaur", imageUrl = getPokemonImageUrlById(3)),
+        Pokemon(id = 4, name = "Charmander", imageUrl = getPokemonImageUrlById(4)),
+        Pokemon(id = 5, name = "Charmeleon", imageUrl = getPokemonImageUrlById(5)),
+        Pokemon(id = 6, name = "Charizard", imageUrl = getPokemonImageUrlById(6))
+    )
 
     override suspend fun getPokemonDetail(id: Int): PokemonDetail {
         TODO("Not yet implemented")
     }
+
+    private fun getPokemonImageUrlById(id: Int) = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 }
 //endregion

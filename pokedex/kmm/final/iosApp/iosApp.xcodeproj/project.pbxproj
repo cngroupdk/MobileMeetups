@@ -17,6 +17,8 @@
 		FACDAC9A29A8CCA50031E0A7 /* SwiftUINavigation in Frameworks */ = {isa = PBXBuildFile; productRef = FACDAC9929A8CCA50031E0A7 /* SwiftUINavigation */; };
 		FACDAC9C29A8CCA50031E0A7 /* _SwiftUINavigationState in Frameworks */ = {isa = PBXBuildFile; productRef = FACDAC9B29A8CCA50031E0A7 /* _SwiftUINavigationState */; };
 		FACDAC9F29A8D0D80031E0A7 /* PokemonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */; };
+		FACDACA229A8DD9C0031E0A7 /* NavigationBarWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDACA129A8DD9C0031E0A7 /* NavigationBarWrapper.swift */; };
+		FACDACA529A8DDC80031E0A7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */; };
 		FAF958CF29A8043000E46396 /* RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958CE29A8043000E46396 /* RequestState.swift */; };
 		FAF958D629A8048800E46396 /* AnyCancellable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D329A8048700E46396 /* AnyCancellable+.swift */; };
 		FAF958D729A8048800E46396 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D429A8048700E46396 /* Publisher+.swift */; };
@@ -68,6 +70,8 @@
 		FACDAC8F29A8CBA50031E0A7 /* PokemonListScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListScreenView.swift; sourceTree = "<group>"; };
 		FACDAC9129A8CBE60031E0A7 /* PokemonListViewModelWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModelWrapper.swift; sourceTree = "<group>"; };
 		FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonItem.swift; sourceTree = "<group>"; };
+		FACDACA129A8DD9C0031E0A7 /* NavigationBarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWrapper.swift; sourceTree = "<group>"; };
+		FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		FAF958CE29A8043000E46396 /* RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestState.swift; sourceTree = "<group>"; };
 		FAF958D329A8048700E46396 /* AnyCancellable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCancellable+.swift"; sourceTree = "<group>"; };
 		FAF958D429A8048700E46396 /* Publisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
@@ -184,6 +188,22 @@
 			path = template;
 			sourceTree = "<group>";
 		};
+		FACDACA029A8DD8B0031E0A7 /* organism */ = {
+			isa = PBXGroup;
+			children = (
+				FACDACA129A8DD9C0031E0A7 /* NavigationBarWrapper.swift */,
+			);
+			path = organism;
+			sourceTree = "<group>";
+		};
+		FACDACA329A8DDB50031E0A7 /* molecule */ = {
+			isa = PBXGroup;
+			children = (
+				FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */,
+			);
+			path = molecule;
+			sourceTree = "<group>";
+		};
 		FAF958CD29A8041F00E46396 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				FAF958FD29A80C9B00E46396 /* atom */,
+				FACDACA329A8DDB50031E0A7 /* molecule */,
+				FACDACA029A8DD8B0031E0A7 /* organism */,
 				FACDAC9D29A8D0C50031E0A7 /* template */,
 			);
 			path = component;
@@ -408,6 +430,7 @@
 				FAF958F029A8050200E46396 /* BaseViewModelWrapper.swift in Sources */,
 				FAF958ED29A8050200E46396 /* ProcessInfo+Preview.swift in Sources */,
 				FAF958D729A8048800E46396 /* Publisher+.swift in Sources */,
+				FACDACA529A8DDC80031E0A7 /* NavigationBar.swift in Sources */,
 				FAF958CF29A8043000E46396 /* RequestState.swift in Sources */,
 				FAF958E429A8049F00E46396 /* View+TabBar.swift in Sources */,
 				FAF958FB29A805F400E46396 /* Koin.swift in Sources */,
@@ -430,6 +453,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FAF9590B29A80CB300E46396 /* CloseButton.swift in Sources */,
 				FAF958EE29A8050200E46396 /* UIApplication+.swift in Sources */,
+				FACDACA229A8DD9C0031E0A7 /* NavigationBarWrapper.swift in Sources */,
 				FAF958F829A805AF00E46396 /* Theme.swift in Sources */,
 				FAF958E329A8049F00E46396 /* View+ListSectionPadding.swift in Sources */,
 				FAF958F929A805AF00E46396 /* Theme+Color.swift in Sources */,

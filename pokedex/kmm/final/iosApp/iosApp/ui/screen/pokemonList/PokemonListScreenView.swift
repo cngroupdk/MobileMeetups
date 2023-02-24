@@ -1,3 +1,4 @@
+import SharedResources
 import SwiftUI
 
 struct PokemonListScreenView: View {
@@ -5,18 +6,32 @@ struct PokemonListScreenView: View {
     @StateObject var viewModelWrapper: PokemonListViewModelWrapper
 
     var body: some View {
-        ScrollView(.vertical, showsIndicators: true) {
-            LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
-                ForEach(viewModelWrapper.pokemonList, id: \.id) { pokemon in
-                    PokemonItem(
-                        pokemon: pokemon,
-                        action: {}
-                    )
+        NavigationBarWrapper(barTitleView: {
+            TextView(verbatim: MR.strings().pokemonList_pokedex.localized(), .largeTitle)
+                .padding(.horizontal, Theme.space.s3)
+                .leadingAligned()
+                .eraseToAnyView()
+        }) {
+            ScrollView(.vertical, showsIndicators: true) {
+                LazyVGrid(columns: Array(repeating: .init(), count: 2)) {
+                    ForEach(viewModelWrapper.pokemonList, id: \.id) { pokemon in
+                        PokemonItem(
+                            pokemon: pokemon,
+                            action: {}
+                        )
+                    }
                 }
+                .padding(8)
             }
-            .padding(.horizontal, 8)
         }
-        .background(Theme.colors.background)
     }
 
 }
+
+#if DEBUG
+    struct PokemonListScreenView_Previews: PreviewProvider {
+        static var previews: some View {
+            PokemonListScreenView(viewModelWrapper: .preview)
+        }
+    }
+#endif
