@@ -6,6 +6,7 @@ import SharedKit
 final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewModel> {
 
     @Published var pokemonList: [Pokemon] = []
+    @Published var searchQuery: String = ""
 
     private var cancellables: Set<AnyCancellable> = .init()
 
@@ -16,6 +17,7 @@ final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewMod
     required init(parameters: [AnyObject]?) {
         super.init(parameters: parameters)
         mapCoroutines()
+        setupSubscriptions()
     }
 
     private func mapCoroutines() {
@@ -23,6 +25,16 @@ final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewMod
             .replaceError(with: [])
             .receive(on: DispatchQueue.main)
             .assign(to: &$pokemonList)
+    }
+
+    private func setupSubscriptions() {
+        $searchQuery
+            .dropFirst()
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] in
+                self?.viewModel.searchPokemon(term: $0)
+            })
+            .store(in: &cancellables)
     }
 
 }

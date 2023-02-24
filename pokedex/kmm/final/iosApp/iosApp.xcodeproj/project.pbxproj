@@ -19,6 +19,7 @@
 		FACDAC9F29A8D0D80031E0A7 /* PokemonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */; };
 		FACDACA229A8DD9C0031E0A7 /* NavigationBarWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDACA129A8DD9C0031E0A7 /* NavigationBarWrapper.swift */; };
 		FACDACA529A8DDC80031E0A7 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */; };
+		FACDACA729A904520031E0A7 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACDACA629A904520031E0A7 /* SearchBarView.swift */; };
 		FAF958CF29A8043000E46396 /* RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958CE29A8043000E46396 /* RequestState.swift */; };
 		FAF958D629A8048800E46396 /* AnyCancellable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D329A8048700E46396 /* AnyCancellable+.swift */; };
 		FAF958D729A8048800E46396 /* Publisher+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF958D429A8048700E46396 /* Publisher+.swift */; };
@@ -72,6 +73,7 @@
 		FACDAC9E29A8D0D80031E0A7 /* PokemonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonItem.swift; sourceTree = "<group>"; };
 		FACDACA129A8DD9C0031E0A7 /* NavigationBarWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarWrapper.swift; sourceTree = "<group>"; };
 		FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		FACDACA629A904520031E0A7 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FAF958CE29A8043000E46396 /* RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestState.swift; sourceTree = "<group>"; };
 		FAF958D329A8048700E46396 /* AnyCancellable+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AnyCancellable+.swift"; sourceTree = "<group>"; };
 		FAF958D429A8048700E46396 /* Publisher+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+.swift"; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				FACDACA429A8DDC80031E0A7 /* NavigationBar.swift */,
+				FACDACA629A904520031E0A7 /* SearchBarView.swift */,
 			);
 			path = molecule;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 				FAF958F829A805AF00E46396 /* Theme.swift in Sources */,
 				FAF958E329A8049F00E46396 /* View+ListSectionPadding.swift in Sources */,
 				FAF958F929A805AF00E46396 /* Theme+Color.swift in Sources */,
+				FACDACA729A904520031E0A7 /* SearchBarView.swift in Sources */,
 				FAF958E229A8049F00E46396 /* Binding+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
