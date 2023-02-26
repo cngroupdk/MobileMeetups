@@ -6,7 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
-import dk.cngroup.pokedex.android.ui.screen.PokemonListScreen
+import androidx.navigation.compose.rememberNavController
+import dk.cngroup.pokedex.android.ui.navigation.graph.RootNavigationGraph
 import dk.cngroup.pokedex.android.ui.theme.PokedexTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +19,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    PokemonListScreen(navigateToPokemonDetail = {})
+                    RootNavigationGraph(
+                        navController = rememberNavController()
+                    )
                 }
             }
         }

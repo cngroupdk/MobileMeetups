@@ -38,7 +38,12 @@ internal class PokedexRepositoryImpl(
     }
 
     override suspend fun getPokemonDetail(id: Int): PokemonDetail {
-        TODO("Not yet implemented")
+        return apiPokedex.fetchPokemonDetail(id).run {
+            this.copy(
+                name = this.name.replaceFirstChar { it.uppercase() },
+                imageUrl = getPokemonImageUrlById(id)
+            )
+        }
     }
 
     private fun getPokemonImageUrlById(id: Int) = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
@@ -56,9 +61,15 @@ class MockPokedexRepository : PokedexRepository {
         Pokemon(id = 6, name = "Charizard", imageUrl = getPokemonImageUrlById(6))
     )
 
-    override suspend fun getPokemonDetail(id: Int): PokemonDetail {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getPokemonDetail(id: Int): PokemonDetail = PokemonDetail(
+        baseExperience = 64,
+        height = 7,
+        id = 1,
+        name = "Bulbasaur",
+        types = listOf(),
+        weight = 69,
+        imageUrl = getPokemonImageUrlById(1)
+    )
 
     private fun getPokemonImageUrlById(id: Int) = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
 }

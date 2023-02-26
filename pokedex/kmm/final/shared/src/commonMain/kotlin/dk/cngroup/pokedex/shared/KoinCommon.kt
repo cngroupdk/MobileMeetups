@@ -2,6 +2,7 @@ package dk.cngroup.pokedex.shared
 
 import dk.cngroup.pokedex.shared.platform.PlatformInfo
 import dk.cngroup.pokedex.shared.platform.ioDispatcher
+import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonDetailViewModel
 import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonListViewModel
 import dk.cngroup.pokedex.shared.service.PokedexRepository
 import dk.cngroup.pokedex.shared.service.PokedexRepositoryImpl
@@ -24,6 +25,7 @@ private object Modules {
     }
     val viewModels = module {
         factoryOf(::PokemonListViewModel)
+        factoryOf(::PokemonDetailViewModel)
     }
 }
 

@@ -15,7 +15,7 @@ data class PokemonDetail(
     val name: String,
     val types: List<Type>,
     val weight: Long,
-    val imageUrl: String?
+    val imageUrl: String? = null
 ) : Parcelable
 
 @Parcelize

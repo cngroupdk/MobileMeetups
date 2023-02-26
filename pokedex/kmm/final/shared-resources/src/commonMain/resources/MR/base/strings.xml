@@ -5,4 +5,9 @@
     <string name="pokemonList.pokedex">Pokédex</string>
     <string name="pokemonList.lookForPokemon">Look for pokémon...</string>
 
+    <!-- Pokemon Detail -->
+    <string name="pokemonDetail.baseExperience">Base Experience</string>
+    <string name="pokemonDetail.weight">Weight</string>
+    <string name="pokemonDetail.height">Height</string>
+
 </resources>

@@ -2,6 +2,7 @@ package dk.cngroup.pokedex.android
 
 import android.app.Application
 import dk.cngroup.pokedex.shared.initKoin
+import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonDetailViewModel
 import dk.cngroup.pokedex.shared.presentation.viewModel.PokemonListViewModel
 import dk.cngroup.pokedex.sharedresources.Resources
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -14,6 +15,7 @@ class PokedexApp : Application() {
         initKoin(
             viewModelsModule = module {
                 viewModelOf(::PokemonListViewModel)
+                viewModelOf(::PokemonDetailViewModel)
             }
         )
     }
