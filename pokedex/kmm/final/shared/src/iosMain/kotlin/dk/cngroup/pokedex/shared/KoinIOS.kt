@@ -1,5 +1,6 @@
 package dk.cngroup.pokedex.shared.platform
 
+import dk.cngroup.pokedex.shared.initKoin
 import kotlinx.cinterop.ObjCClass
 import kotlinx.cinterop.getOriginalKotlinClass
 import org.koin.core.Koin
