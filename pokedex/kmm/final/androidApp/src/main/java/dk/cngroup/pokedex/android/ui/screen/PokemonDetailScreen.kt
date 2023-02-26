@@ -88,7 +88,7 @@ private fun PokemonDetailScreenPreview() {
         PokemonDetailScreen(
             viewModel = PokemonDetailViewModel(
                 repository = MockPokedexRepository(),
-                pokemonId = 1
+                pokemonId = "1"
             )
         )
     }

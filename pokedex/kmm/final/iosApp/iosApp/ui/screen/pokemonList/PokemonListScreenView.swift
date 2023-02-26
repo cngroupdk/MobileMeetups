@@ -7,6 +7,11 @@ struct PokemonListScreenView: View {
     @StateObject var viewModelWrapper: PokemonListViewModelWrapper
 
     var body: some View {
+        PokemonListFlowCoordinator(state: viewModelWrapper, content: content)
+    }
+
+    @ViewBuilder
+    private func content() -> some View {
         NavigationBarWrapper(barTitleView: {
             TextView(verbatim: MR.strings().pokemonList_pokedex.localized(), .largeSubtitle)
                 .padding(.horizontal, Theme.space.s3)
@@ -22,7 +27,7 @@ struct PokemonListScreenView: View {
 
                 pokemonGrid(
                     pokemonList: viewModelWrapper.pokemonList,
-                    onSelect: { _ in }
+                    onSelect: { viewModelWrapper.openPokemonDetail(for: $0) }
                 )
             }
         }

@@ -12,14 +12,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dk.cngroup.pokedex.android.ui.theme.PokedexTheme
+import dk.cngroup.pokedex.shared.data.model.PokemonType
 import dk.cngroup.pokedex.shared.data.model.Species
-import dk.cngroup.pokedex.shared.data.model.Type
 import dk.cngroup.pokedex.sharedresources.Resources
 
 @Composable
 fun PokemonTypes(
     modifier: Modifier = Modifier,
-    types: List<Type>
+    types: List<PokemonType>
 ) {
     if (types.isNotEmpty()) {
         Row(
@@ -51,11 +51,11 @@ private fun PokemonTypesPreview() {
     PokedexTheme {
         PokemonTypes(
             types = listOf(
-                Type(
+                PokemonType(
                     slot = 1,
                     type = Species(name = "grass", url = "https://pokeapi.co/api/v2/type/12/")
                 ),
-                Type(
+                PokemonType(
                     slot = 2,
                     type = Species(name = "poison", url = "https://pokeapi.co/api/v2/type/4/")
                 )

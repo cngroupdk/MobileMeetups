@@ -13,7 +13,7 @@ data class PokemonDetail(
     val height: Long,
     val id: Long,
     val name: String,
-    val types: List<Type>,
+    val types: List<PokemonType>,
     val weight: Long,
     val imageUrl: String? = null
 ) : Parcelable
@@ -27,7 +27,7 @@ data class Species(
 
 @Parcelize
 @Serializable
-data class Type(
+data class PokemonType(
     val slot: Long,
     val type: Species
 ) : Parcelable

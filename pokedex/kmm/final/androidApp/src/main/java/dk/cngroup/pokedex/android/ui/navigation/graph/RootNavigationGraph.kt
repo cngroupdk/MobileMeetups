@@ -42,7 +42,7 @@ fun RootNavigationGraph(
         ) {
             it.arguments?.getString(RootNavigationScreen.Parameter.POKEMON_ID)?.let { pokemonId ->
                 PokemonDetailScreen(
-                    viewModel = getViewModel { parametersOf(pokemonId.toInt()) }
+                    viewModel = getViewModel { parametersOf(pokemonId) }
                 )
             }
         }

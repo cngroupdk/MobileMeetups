@@ -3,6 +3,8 @@ package dk.cngroup.pokedex.shared.service
 import dk.cngroup.pokedex.shared.data.api.ApiPokedex
 import dk.cngroup.pokedex.shared.data.model.Pokemon
 import dk.cngroup.pokedex.shared.data.model.PokemonDetail
+import dk.cngroup.pokedex.shared.data.model.PokemonType
+import dk.cngroup.pokedex.shared.data.model.Species
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -66,7 +68,16 @@ class MockPokedexRepository : PokedexRepository {
         height = 7,
         id = 1,
         name = "Bulbasaur",
-        types = listOf(),
+        types = listOf(
+            PokemonType(
+                slot = 1,
+                type = Species(name = "grass", url = "https://pokeapi.co/api/v2/type/12/")
+            ),
+            PokemonType(
+                slot = 2,
+                type = Species(name = "poison", url = "https://pokeapi.co/api/v2/type/4/")
+            )
+        ),
         weight = 69,
         imageUrl = getPokemonImageUrlById(1)
     )

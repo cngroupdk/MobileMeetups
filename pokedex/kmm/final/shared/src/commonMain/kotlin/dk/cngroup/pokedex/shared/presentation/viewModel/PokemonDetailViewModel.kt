@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class PokemonDetailViewModel(
     private val repository: PokedexRepository,
-    pokemonId: Int
+    pokemonId: String
 ) : BaseViewModel() {
 
     // Flow for data propagation
@@ -20,7 +20,7 @@ class PokemonDetailViewModel(
 
     init {
         scope.launch(ioDispatcher) {
-            _pokemonDetailFlow.value = repository.getPokemonDetail(id = pokemonId)
+            _pokemonDetailFlow.value = repository.getPokemonDetail(id = pokemonId.toInt())
         }
     }
 }

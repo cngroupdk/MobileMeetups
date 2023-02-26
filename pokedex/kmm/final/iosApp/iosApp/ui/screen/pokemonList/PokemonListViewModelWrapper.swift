@@ -3,9 +3,11 @@ import Foundation
 import KMPNativeCoroutinesCombine
 import SharedKit
 
-final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewModel> {
+final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewModel>,
+    PokemonListFlowStateProtocol
+{
 
-    @Published var pokemonList: [Pokemon] = []
+    @Published private(set) var pokemonList: [Pokemon] = []
     @Published var searchQuery: String = ""
 
     private var cancellables: Set<AnyCancellable> = .init()
@@ -35,6 +37,14 @@ final class PokemonListViewModelWrapper: BaseViewModelWrapper<PokemonListViewMod
                 self?.viewModel.searchPokemon(term: $0)
             })
             .store(in: &cancellables)
+    }
+
+    // MARK: - Flow state
+    @Published var route: PokemonListRoute?
+
+    func openPokemonDetail(for pokemon: Pokemon) {
+        guard !ProcessInfo.isSwiftUIPreview else { return }
+        self.route = .pokemonDetail(pokemon)
     }
 
 }
