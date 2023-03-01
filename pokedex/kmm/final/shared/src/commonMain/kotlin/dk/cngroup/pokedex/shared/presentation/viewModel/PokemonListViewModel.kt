@@ -33,8 +33,12 @@ class PokemonListViewModel(
 
     init {
         scope.launch(ioDispatcher) {
-            originalPokemonList = repository.getPokemonAll()
-            _pokemonListFlow.value = originalPokemonList.toImmutableList()
+            try {
+                originalPokemonList = repository.getPokemonAll()
+                _pokemonListFlow.value = originalPokemonList.toImmutableList()
+            } catch (e: Throwable) {
+
+            }
         }
     }
 

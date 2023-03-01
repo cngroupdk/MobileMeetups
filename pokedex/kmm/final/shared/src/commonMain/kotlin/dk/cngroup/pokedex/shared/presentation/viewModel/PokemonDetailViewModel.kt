@@ -20,7 +20,11 @@ class PokemonDetailViewModel(
 
     init {
         scope.launch(ioDispatcher) {
-            _pokemonDetailFlow.value = repository.getPokemonDetail(id = pokemonId.toInt())
+            try {
+                _pokemonDetailFlow.value = repository.getPokemonDetail(id = pokemonId.toInt())
+            } catch (e: Throwable) {
+                
+            }
         }
     }
 }
